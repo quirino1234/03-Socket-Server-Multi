@@ -8,17 +8,17 @@ export class GraficaData{
     getDataGrafica(){
 
         return[
-            {data: this.valores , label: "Ventas"} 
-        ]
+            { data: this.valores , label: 'Ventas'} 
+        ];
     }
 
     incrementarValor( mes: string, valor: number ){
 
         mes = mes.toLowerCase().trim();
 
-        for( let i in this.meses){
+        for( let i in this.meses ){
 
-            if( this.meses[i] === mes){
+            if( this.meses[i] === mes ){
                this.valores[i] += valor;   
             }
         }

@@ -1,4 +1,3 @@
-
 import { Router, Request, Response } from 'express';
 import Server from '../classes/server';
 import { usuariosConectados } from '../sockets/sockets';
@@ -22,15 +21,14 @@ router.post('/grafica', ( req: Request, res: Response  ) => {
 
     grafica.incrementarValor( mes, unidades );
 
-    const server = Server.instance;
+    const server = Server.instance; 
     server.io.emit('cambio-grafica', grafica.getDataGrafica() );
 
 
     res.json( grafica.getDataGrafica() );
 
+
 });
-
-
 router.post('/mensajes/:id', ( req: Request, res: Response  ) => {
 
     const cuerpo = req.body.cuerpo;
@@ -59,17 +57,24 @@ router.post('/mensajes/:id', ( req: Request, res: Response  ) => {
 
 
 // Servicio para obtener todos los IDs de los usuarios
-router.get('/usuarios',(req: Request, res: Response) => {
-    
+router.get('/usuarios', (  req: Request, res: Response ) => {
+
     const server = Server.instance;
-    server.io.fetchSockets().then((sockets) => 
-    
-    {
-        const clients: Object[] = []
-        sockets.forEach(socket => clients.push(socket.id));
-        res.json({ok: true, clients});}).catch(error =>
-        res.json({ok: true, error,}));
-});
+
+    //server.io.clients( ( err: any, clientes: string[] ) => {
+
+        
+
+
+        res.json({
+            ok: true,
+           
+        });
+
+
+    });
+
+
 
 // Obtener usuarios y sus nombres
 router.get('/usuarios/detalle', (  req: Request, res: Response ) => {
@@ -82,6 +87,7 @@ router.get('/usuarios/detalle', (  req: Request, res: Response ) => {
 
     
 });
+
 export default router;
 
 

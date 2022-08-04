@@ -38,6 +38,7 @@ export  default class Server
      
             socket.configurarUsuario(cliente, this.io);
 
+            
             socket.obtenerUsuarios( cliente, this.io );
             
             socket.mensaje(cliente, this.io);
